@@ -1,25 +1,24 @@
 const months: string[] = [
-  'января',
-  'февраля',
-  'марта',
-  'апреля',
+  'янв',
+  'фев',
+  'мар',
+  'апр',
   'мая',
-  'июня',
-  'июля',
-  'августа',
-  'сентября',
-  'октября',
-  'ноября',
-  'декабря',
+  'июн',
+  'июл',
+  'авг',
+  'сен',
+  'окт',
+  'ноя',
+  'дек',
 ];
 
 export const getDate = (date: string) => {
   const parseDate = new Date(date);
   const day = parseDate.getUTCDate();
   const month = months[parseDate.getMonth()];
-  const year = parseDate.getFullYear();
   const hours = parseDate.getUTCHours();
   const minutes = parseDate.getUTCMinutes();
 
-  return `${day} ${month} ${year}г. в ${hours}:${minutes}`;
+  return `${day} ${month} - ${hours}:${minutes}`;
 };

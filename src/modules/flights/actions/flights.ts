@@ -1,26 +1,6 @@
-// import {
-//   createAction,
-// } from 'redux-actions';
-
 import { Dispatch } from 'redux';
 import * as ActionTypes from '../constants/actionTypes';
-import { DispatchProp } from '../../../../node_modules/@types/react-redux/index';
-
-// import {
-//   GET_FLIGHTS_REQUEST,
-//   GET_FLIGHTS_COMPLETED,
-//   GET_FLIGHTS_FAILED,
-// } from '../constants/actionTypes';
-interface IFight {
-  id: number;
-  direction: {
-    from: string,
-    to: string,
-  };
-  arrival: string;
-  departure: string;
-  carrier: string;
-}
+import { IFlight } from '../constants/types';
 
 export type GetFlightsRequest = {
   type: ActionTypes.GET_FLIGHTS_REQUEST,
@@ -28,7 +8,7 @@ export type GetFlightsRequest = {
 
 export type GetFlightsCompleted = {
   type: ActionTypes.GET_FLIGHTS_COMPLETED,
-  payload: IFight[],
+  payload: IFlight[],
 }
 
 export type GetFlightsFailed = {
@@ -42,7 +22,7 @@ export function getFlightsRequest(): GetFlightsRequest {
   }
 }
 
-export function getFlightsCompleted(payload: IFight[]): GetFlightsCompleted {
+export function getFlightsCompleted(payload: IFlight[]): GetFlightsCompleted {
   return {
     type: ActionTypes.GET_FLIGHTS_COMPLETED,
     payload,
@@ -56,14 +36,16 @@ export function getFlightsFailed(payload: Error): GetFlightsFailed {
   }
 }
 
-export const getFlights = () => (dispatch: Dispatch<any>) => {
+export const getFlights = () => (dispatch: Dispatch<GetFlightsRequest
+  | GetFlightsCompleted
+  | GetFlightsFailed>) => {
   dispatch(getFlightsRequest());
-  return (fetch('http://localhost:3000/flights')
+  fetch('http://localhost:3000/flights')
     .then(res => res.json())
     .then((flights) => {
       dispatch(getFlightsCompleted(flights));
     })
     .catch((error) => {
       dispatch(getFlightsFailed(error));
-    }));
+    });
 };

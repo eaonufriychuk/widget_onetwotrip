@@ -1,4 +1,4 @@
-interface IFlight {
+export interface IFlight {
   id: number;
   direction: {
     from: string,
@@ -10,9 +10,7 @@ interface IFlight {
 }
 
 export interface ApplicationState {
-  flights: {
-    flightsData: IFlight[],
-    fetching: boolean,
-    error: Object,
-  }
+  flightsData: IFlight[],
+  fetching: boolean,
+  error: Object,
 }
