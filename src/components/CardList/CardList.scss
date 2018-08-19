@@ -1,0 +1,54 @@
+.cards {
+  font-size: 0;
+  text-align: left;
+  margin: 0 -10px;
+}
+
+.cards-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 265px;
+  height: 175px;
+  font-size: 15px;
+  line-height: 1.35;
+  background: #f8f8f8;
+  text-align: left;
+  padding: 20px;
+  margin: 0 10px 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  &__label {
+    font-size: 14px;
+    color: #999;
+    margin: 0 0 3px;
+  }
+  &__row {
+    margin: 0 0 15px;
+  }
+}
+
+.cards-item:hover {
+  box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+}
+
+.cards-item:last-child {
+  margin-bottom: 0;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+// .example-leave {
+//   opacity: 1;
+// }
+// .example-leave.example-leave-active {
+//   opacity: 0.01;
+//   transition: opacity 300ms ease-in;
+// }
