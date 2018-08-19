@@ -1,4 +1,4 @@
-# widget_onetwotrip
+# Widget_OneTwoTrip
 
 ## Как запустить проект
 
