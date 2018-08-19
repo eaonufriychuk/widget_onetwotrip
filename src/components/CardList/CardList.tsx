@@ -1,74 +1,40 @@
 import React, { Component } from 'react';
+import { IFlight } from '../../modules/flights/constants/types';
 import { getDate } from '../../modules/flights/helpers/date';
 import './CardList.scss';
 
-interface IFight {
-  id: number;
-  direction: {
-    from: string,
-    to: string,
-  };
-  arrival: string;
-  departure: string;
-  carrier: string;
+interface IProps {
+  flights: IFlight[];
 }
 
-export interface IProps {
-  flights: IFight[];
-}
-
-interface IState {
-  showCard?: boolean;
-}
-
-
-export default class CardList extends Component<IProps, IState> {
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        showCard: true,
-      });
-    }, 100);
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      showCard: false,
-    });
-
-    setTimeout(() => {
-      this.setState({
-        showCard: true,
-      });
-    }, 100);
-  }
-
+export default class CardList extends Component<IProps> {
   render() {
     const { flights } = this.props;
-    const { showCard } = this.state;
 
     return (
-      <div className="cards">
+      <div className="card_list container">
         {flights.map(item => (
-          <div className="cards-item" key={item.id} style={{ opacity: showCard ? 1 : 0 }}>
-            <div className="cards-item__row _direction">
-              <div className="cards-item__label">
-                Направление
+          <div className="card_item" key={item.id}>
+            <div className="card_item__row">
+              <div className="card_item__label">
+                Откуда - Куда
               </div>
               {item.direction.from}
               -
               {item.direction.to}
             </div>
-            <div className="cards-item__row _time">
-              <div className="cards-item__label">
-                Время вылета - Время прилета
+            <div className="card_item__row">
+              <div className="card_item__label">
+                Время вылета
               </div>
               {getDate(item.arrival)}
-              <br />
+              <div className="card_item__label">
+                Время прилета
+              </div>
               {getDate(item.departure)}
             </div>
-            <div className="cards-item__row _carrier">
-              <div className="cards-item__label">
+            <div className="card_item__row">
+              <div className="card_item__label">
                 Название авиакомпании
               </div>
               {item.carrier}

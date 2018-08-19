@@ -1,7 +1,3 @@
-// import {
-//   handleActions,
-// } from 'redux-actions';
-
 import {
   GetFlightsRequest,
   GetFlightsCompleted,
@@ -50,21 +46,3 @@ const updateState = (state: State = initialState, action: Action) => {
 };
 
 export default updateState;
-
-// export default handleActions({
-//   [getFlightsRequest]: state => ({
-//     ...state,
-//     fetching: true,
-//     error: null,
-//   }),
-//   [getFlightsCompleted]: (state, action) => ({
-//     ...state,
-//     fetching: false,
-//     flightsData: [...state.flightsData, ...action.payload],
-//   }),
-//   [getFlightsFailed]: (state, action) => ({
-//     ...state,
-//     fetching: false,
-//     error: action.payload,
-//   }),
-// }, initialState);

@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import uniq from 'uniq';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import { getFlights } from '../modules/flights/actions/flights';
 import Select from '../components/Select/Select';
 import CardList from '../components/CardList/CardList';
-
-import { ApplicationState } from '../modules/applicationState';
-
-interface IFight {
-  id: number;
-  direction: {
-    from: string,
-    to: string,
-  };
-  arrival: string;
-  departure: string;
-  carrier: string;
-}
+import {
+  GetFlightsRequest,
+  GetFlightsCompleted,
+  GetFlightsFailed,
+} from '../modules/flights/actions/flights';
+import { IFlight, ApplicationState } from '../modules/flights/constants/types';
 
 interface IProps {
-  flights: IFight[];
+  flights: IFlight[];
   getFlightsList?: () => void;
 }
 
@@ -57,7 +50,6 @@ class MainContainer extends Component<IProps, IState> {
       : flights.filter(flight => flight.carrier === selectFlight);
   }
 
-
   handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ selectFlight: e.currentTarget.value });
   }
@@ -71,7 +63,6 @@ class MainContainer extends Component<IProps, IState> {
           flights={this.getUniqueValues()}
           handleChange={this.handleChange}
           value={selectFlight}
-
         />
         <CardList flights={this.getSelectFlights()} />
       </div>
@@ -81,9 +72,9 @@ class MainContainer extends Component<IProps, IState> {
 
 export default connect(
   (state: ApplicationState) => ({
-    flights: state.flights.flightsData,
+    flights: state.flightsData,
   }),
-  (dispatch: Dispatch<any>) => (
+  (dispatch: Dispatch<GetFlightsRequest | GetFlightsCompleted | GetFlightsFailed>) => (
     {
       getFlightsList: () => dispatch(getFlights()),
     }

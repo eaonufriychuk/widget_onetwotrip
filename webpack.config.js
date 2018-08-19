@@ -12,7 +12,7 @@ module.exports = {
     filename: 'bundle[chunkhash].js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.png'],
   },
   module: {
     rules: [{
@@ -45,32 +45,6 @@ module.exports = {
           fallback: 'style-loader',
           use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
-      },
-      {
-        test: /\.svg$/,
-        use: [{
-            loader: "babel-loader"
-          },
-          {
-            loader: "react-svg-loader",
-            options: {
-              jsx: true // true outputs JSX tags
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
-            },
-          },
-        ],
       },
     ]
   },
