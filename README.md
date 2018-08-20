@@ -4,6 +4,6 @@
 
 ```
 npm install
-npm run dev
-npm run json-server
+npm run dev - http://localhost:8085
+npm run json-server - http://localhost:3000
 ```
