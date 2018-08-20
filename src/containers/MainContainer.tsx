@@ -45,6 +45,7 @@ class MainContainer extends Component<IProps, IState> {
   getSelectFlights() {
     const { flights } = this.props;
     const { selectFlight } = this.state;
+    
     return selectFlight === 'Все авиакомпании'
       ? flights
       : flights.filter(flight => flight.carrier === selectFlight);
